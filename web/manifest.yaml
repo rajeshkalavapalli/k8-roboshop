@@ -86,7 +86,7 @@ data:
 
         location /api/catalogue/ {
           proxy_pass http://catalogue:8080/;
-        }
+      }
 
 
     }
@@ -149,4 +149,3 @@ spec:
   - protocol: TCP
     port: 80 #service-port
     targetPort: 80 #container-port
-    
