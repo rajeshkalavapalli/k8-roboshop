@@ -108,53 +108,51 @@ data:
     }
 
     } 
+
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: web
   namespace: roboshop
-  labels:
+  labels: # these labels are deployment labels
     app: web
     project: roboshop
-    tier: web  
+    tier: web
 spec:
   replicas: 1
   selector:
-    matchLabels:
+    matchLabels: # these labels are used to find the pods
       app: web
       project: roboshop
       tier: web
   template:
     metadata:
-      labels:
+      labels: # these labels are pod labels
         app: web
         project: roboshop
-        tier: web  
+        tier: web
     spec:
       containers:
       - name: web
-        image: rajeshkalavapalli/web:v1
+        image: joindevops/web:v1
         imagePullPolicy: Always
         volumeMounts:
         - name: nginx-conf
           mountPath: /etc/nginx/nginx.conf
           subPath: nginx.conf
           readOnly: true
-      volumes: 
+      volumes:
       - name: nginx-conf
         configMap:
           name: web
           items:
             - key: nginx.conf
-              path: nginx.conf  
-        # envFrom:
-        # - configMapRef:
-        #     name: web
+              path: nginx.conf
 ---
 apiVersion: v1
 kind: Service
-metadata:  
+metadata:
   name: web
   namespace: roboshop
 spec:
@@ -162,8 +160,8 @@ spec:
   selector:
     app: web
     project: roboshop
-    tier: web 
+    tier: web
   ports:
-    - protocol: TCP
-      port: 8080
-      targetPort: 8080
+  - protocol: TCP
+    port: 80 #service-port
+    targetPort: 80 #container-port
