@@ -86,7 +86,9 @@ data:
 
         location /api/catalogue/ {
           proxy_pass http://catalogue:8080/;
-      }
+        }
+
+        
 
 
     }
