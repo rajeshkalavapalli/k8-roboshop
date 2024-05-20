@@ -1,3 +1,4 @@
+
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -18,7 +19,7 @@ spec:
   template:
     metadata:
       labels:
-        app: catalogue
+        app: web
         project: roboshop
         tier: web  
     spec:
@@ -45,4 +46,3 @@ spec:
     - protocol: TCP
       port: 8080
       targetPort: 8080
-      
