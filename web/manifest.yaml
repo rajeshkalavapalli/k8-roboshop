@@ -97,10 +97,8 @@ data:
         }
 
         location /api/shipping/ {
-          proxy_pass http://shipping:8080/;
+          proxy_pass http://cart:8080/;
         }
-
-
 
     }
 
