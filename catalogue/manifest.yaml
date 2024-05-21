@@ -11,23 +11,23 @@ kind: Deployment
 metadata:
   name: catalogue
   namespace: roboshop
-  labels:
+  labels: # these labels are deployment labels
     app: catalogue
     project: roboshop
-    tier: app  
+    tier: app
 spec:
   replicas: 1
   selector:
-    matchLabels:
+    matchLabels: # these labels are used to find the pods
       app: catalogue
       project: roboshop
       tier: app
   template:
     metadata:
-      labels:
+      labels: # these labels are pod labels
         app: catalogue
         project: roboshop
-        tier: app  
+        tier: app
     spec:
       containers:
       - name: catalogue
@@ -39,16 +39,16 @@ spec:
 ---
 apiVersion: v1
 kind: Service
-metadata:  
+metadata:
   name: catalogue
   namespace: roboshop
 spec:
   selector:
     app: catalogue
     project: roboshop
-    tier: db 
+    tier: app
   ports:
-    - protocol: TCP
-      port: 8080
-      targetPort: 8080
+  - protocol: TCP
+    port: 8080 #service-port
+    targetPort: 8080 #container-port
       
