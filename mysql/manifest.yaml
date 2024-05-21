@@ -4,7 +4,8 @@ metadata:
   name: mysql
   namespace: roboshop
 data:
-  MYSQL_DATABASE= "cities"
+  MYSQL_DATABASE: "cities"
+  
 ---
 apiVersion: v1
 kind: Secret
